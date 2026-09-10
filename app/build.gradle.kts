@@ -5,13 +5,13 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-val secrets = Properties().apply {
-    val secretsFile = rootProject.file("secrets.properties")
-    if (secretsFile.exists()) {
-        secretsFile.inputStream().use(::load)
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use(::load)
     }
 }
-val tmdbApiKey = secrets.getProperty("TMDB_API_KEY", "")
+val tmdbApiKey = localProperties.getProperty("TMDB_API_KEY", "")
 
 android {
     namespace = "com.adolfochavez.aiformovies"

@@ -8,7 +8,7 @@ class TmdbMovieRepository(
 ) : MovieRepository {
     override suspend fun popularMovies(): List<Movie> {
         check(BuildConfig.TMDB_API_KEY.isNotBlank()) {
-            "TMDB_API_KEY is missing. Add it to secrets.properties."
+            "TMDB_API_KEY is missing. Add it to local.properties."
         }
         return service.popularMovies(BuildConfig.TMDB_API_KEY)
             .results
